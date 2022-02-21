@@ -16,11 +16,11 @@ decided to go back to basics and tried implementing a vector system with just 2 
 [Coding's train video](https://www.youtube.com/watch?v=OAcXnzRNiCY) helped me finally understand that I had to use vector subtraction to get the direction the force between 2 particles was acting on.
 
 I then played around and finally implemented a particle system I was happy with text. I then added random and noise into the program to see the output I would get. I realized it
-looked similar to caligraphy and decided to play with a Japanese font. Hence, the project is titled calligraphy. I have included various elements like smooth circle and color size change to 
-emulate an actual brush.
+looked similar to caligraphy and decided to play with a Japanese font. Hence, the project is titled calligraphy. I have included various elements like smooth circle size and color change to emulate an actual brush.
 <img src="https://i.imgur.com/sTze9FA.png">
 <a href="https://gyazo.com/7a099d408aef89c93ff3263e02bfd833"><img src="https://i.gyazo.com/7a099d408aef89c93ff3263e02bfd833.gif" alt="Image from Gyazo" width="414"/></a>
 # Todo
 
 - Something I'd like to implement is somehow make the calligraphy look more watery. Maybe I would have to increase the circle size to simulate a droplet effect.
 - I'd also like to add an on-click interaction. So that upon clicking on the canvas maybe we get more points there or something (simulating painting with a caligraphy brush).
+- Think of how an actual particle system with velocity and acceleration could fit into my project
