@@ -13,10 +13,14 @@ I couldn't get the circle effect I wanted. I then started learning about vectors
 entire physics system like motion and velocity. I didn't want my particles to be in constant motion thus I didn't engange in that. After many failed attempts with text, I 
 decided to go back to basics and tried implementing a vector system with just 2 particles. [Here's the link to the file with vector experiments](https://editor.p5js.org/AakSin/sketches/PW2UD2yys).
 
+[Coding's train video](https://www.youtube.com/watch?v=OAcXnzRNiCY) helped me finally understand that I had to use vector subtraction to get the direction the force between 2 particles was acting on.
+
 I then played around and finally implemented a particle system I was happy with text. I then added random and noise into the program to see the output I would get. I realized it
 looked similar to caligraphy and decided to play with a Japanese font. Hence, the project is titled calligraphy. I have included various elements like smooth circle and color size change to 
 emulate an actual brush.
-<img src="https://www.invaluable.com/blog/wp-content/uploads/2018/09/hero-image-2-1.jpg">
+<img src="https://i.imgur.com/sTze9FA.png">
+<a href="https://gyazo.com/7a099d408aef89c93ff3263e02bfd833"><img src="https://i.gyazo.com/7a099d408aef89c93ff3263e02bfd833.gif" alt="Image from Gyazo" width="414"/></a>
 # Todo
 
-Something I'd like to implement is somehow make the calligraphy look more watery. Maybe I would have to increase the circle size to simulate a droplet effect.
+- Something I'd like to implement is somehow make the calligraphy look more watery. Maybe I would have to increase the circle size to simulate a droplet effect.
+- I'd also like to add an on-click interaction. So that upon clicking on the canvas maybe we get more points there or something (simulating painting with a caligraphy brush).
