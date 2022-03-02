@@ -38,7 +38,6 @@ function draw() {
     vertex(x, y);
   }
   endShape();
-
   text("tap to play", 20, 20);
 }
 
