@@ -13,7 +13,7 @@ function draw() {
   background(220);
   let level = amplitude.getLevel();
   newAmp = level * 1000;
-  if (abs(newAmp - oldAmp) > 100) {
+  if (abs(newAmp - oldAmp) > 150) {
     let planet = new Planet();
     planetArray.push(planet);
     print("spawn");
