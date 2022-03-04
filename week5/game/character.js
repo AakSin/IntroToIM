@@ -4,6 +4,7 @@ class Character {
     this.y = 200;
     this.rX = 100;
     this.rY = 35;
+    this.health = 200;
   }
   draw() {
     rect(this.x, this.y, this.rX, this.rY);

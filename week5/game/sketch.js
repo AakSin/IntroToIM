@@ -5,7 +5,9 @@ let planetArray = [];
 function preload() {
   sound = loadSound("../assets/07. Pocky Boy.mp3");
 }
+let healthBarFull;
 function setup() {
+  noStroke();
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.mouseClicked(togglePlay);
   fft = new p5.FFT(0.8, 256);
@@ -14,11 +16,13 @@ function setup() {
   rectMode(RADIUS);
   ellipseMode(RADIUS);
   sound.amp(0.2);
+  healthBarFull = character.health;
 }
 let oldSum = 0;
 let newSum = 0;
 let oldFc = -60;
 function draw() {
+  fill("white");
   newSum = 0;
   background(220);
   character.draw();
@@ -69,11 +73,24 @@ function draw() {
           planetArray[i].r + character.rX &&
         abs(character.y - planetArray[i].y) <= planetArray[i].r + character.rY
       ) {
-        console.log("collision");
+        character.health -= 0.5;
       }
     }
   }
-  // ellipse(width / 2, height / 2, size, size);
+
+  let healthBarRed = character.health;
+  fill("black");
+  rect(width - healthBarFull - 50, 40, healthBarFull, 10);
+  fill("red");
+  rect(
+    width - healthBarFull - 50 - (healthBarFull - healthBarRed),
+    40,
+    healthBarRed,
+    10
+  );
+  if (healthBarRed == 0) {
+    alert("Stop");
+  }
 }
 
 function togglePlay() {
