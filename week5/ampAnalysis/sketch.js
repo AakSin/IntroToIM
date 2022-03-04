@@ -1,10 +1,11 @@
 function preload() {
-  sound = loadSound("../assets/11. An Angel Held Me Like a Child.mp3");
+  sound = loadSound("../assets/07. Pocky Boy.mp3");
 }
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.mouseClicked(togglePlay);
   amplitude = new p5.Amplitude();
+  sound.amp(0.2);
 }
 let oldAmp = 0;
 let newAmp;
@@ -20,15 +21,15 @@ function draw() {
   }
   textSize(20);
   text(level, 100, 100);
-  let size = map(level, 0, 1, 0, width / 2);
+  let size = map(level, 0, 1, 0, width / 2) * 5;
   text(size, 200, 200);
   text(newAmp - oldAmp, 400, 200);
-  oldAmp = newAmp;
-  for (let i = 0; i < planetArray.length; i++) {
-    planetArray[i].draw();
-    planetArray[i].move();
-  }
-  // ellipse(width / 2, height / 2, size, size);
+  // oldAmp = newAmp;
+  // for (let i = 0; i < planetArray.length; i++) {
+  //   planetArray[i].draw();
+  //   planetArray[i].move();
+  // }
+  ellipse(width / 2, height / 2, size, size);
 }
 
 function togglePlay() {

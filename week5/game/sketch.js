@@ -3,34 +3,61 @@ let oldAmp = 0;
 let newAmp;
 let planetArray = [];
 function preload() {
-  sound = loadSound("../assets/11. An Angel Held Me Like a Child.mp3");
+  sound = loadSound("../assets/07. Pocky Boy.mp3");
 }
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.mouseClicked(togglePlay);
-  amplitude = new p5.Amplitude();
+  fft = new p5.FFT(0.8, 256);
+  frameRate(60);
   character = new Character();
   rectMode(RADIUS);
   ellipseMode(RADIUS);
+  sound.amp(0.2);
 }
-
+let oldSum = 0;
+let newSum = 0;
+let oldFc = -60;
 function draw() {
+  newSum = 0;
   background(220);
   character.draw();
   character.move();
-  let level = amplitude.getLevel();
-  newAmp = level * 1000;
-  if (abs(newAmp - oldAmp) > 70) {
-    let planet = new Planet();
-    planetArray.push(planet);
-    print("spawn");
+
+  if (sound.isPlaying()) {
+    let spectrum = fft.analyze();
+    if (
+      sound.currentTime() < 73 ||
+      (sound.currentTime() >= 103 && sound.currentTime() < 133)
+    ) {
+      for (let i = 60; i < 100; i++) {
+        newSum += spectrum[i];
+      }
+      if (newSum - oldSum > 400 && frameCount - oldFc > 30) {
+        let planet = new Planet();
+        planetArray.push(planet);
+        print("spawn");
+        oldFc = frameCount;
+      }
+    } else if (
+      (sound.currentTime() >= 73 && sound.currentTime() < 103) ||
+      sound.currentTime() >= 132
+    ) {
+      for (let i = 0; i < 10; i++) {
+        newSum += spectrum[i];
+      }
+      // console.log(newSum - oldSum);
+      if (newSum - oldSum > 25 && frameCount - oldFc > 30) {
+        let planet = new Planet();
+        planetArray.push(planet);
+        print("spawn");
+        oldFc = frameCount;
+      }
+    }
+
+    oldSum = newSum;
   }
-  textSize(20);
-  text(level, 100, 100);
-  let size = map(level, 0, 1, 0, width / 2);
-  text(size, 200, 200);
-  text(newAmp - oldAmp, 400, 200);
-  oldAmp = newAmp;
+
   for (let i = planetArray.length - 1; i >= 0; i--) {
     planetArray[i].draw();
     planetArray[i].move();
