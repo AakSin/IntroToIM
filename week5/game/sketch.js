@@ -1,3 +1,7 @@
+let character;
+let oldAmp = 0;
+let newAmp;
+let planetArray = [];
 function preload() {
   sound = loadSound("../assets/11. An Angel Held Me Like a Child.mp3");
 }
@@ -5,15 +9,18 @@ function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.mouseClicked(togglePlay);
   amplitude = new p5.Amplitude();
+  character = new Character();
+  rectMode(RADIUS);
+  ellipseMode(RADIUS);
 }
-let oldAmp = 0;
-let newAmp;
-let planetArray = [];
+
 function draw() {
   background(220);
+  character.draw();
+  character.move();
   let level = amplitude.getLevel();
   newAmp = level * 1000;
-  if (abs(newAmp - oldAmp) > 150) {
+  if (abs(newAmp - oldAmp) > 70) {
     let planet = new Planet();
     planetArray.push(planet);
     print("spawn");
@@ -24,9 +31,25 @@ function draw() {
   text(size, 200, 200);
   text(newAmp - oldAmp, 400, 200);
   oldAmp = newAmp;
-  for (let i = 0; i < planetArray.length; i++) {
+  for (let i = planetArray.length - 1; i >= 0; i--) {
     planetArray[i].draw();
     planetArray[i].move();
+    if (planetArray[i].x < -100) {
+      planetArray.splice(i, 1);
+    } else {
+      characterPlanetDist = dist(
+        planetArray[i].x,
+        planetArray[i].y,
+        character.x,
+        character.y
+      );
+      if (
+        characterPlanetDist <= planetArray[i].r + character.rX ||
+        characterPlanetDist <= planetArray[i].r + character.rY
+      ) {
+        console.log("collision");
+      }
+    }
   }
   // ellipse(width / 2, height / 2, size, size);
 }
@@ -46,7 +69,7 @@ class Planet {
     this.x = width - 20;
     this.originalY = random(0, height);
     this.y = this.originalY;
-    this.r = random(100, 180);
+    this.r = random(50, 90);
     this.vel = -0.1;
     this.acc = -0.01;
     this.yOrientation = 1;
