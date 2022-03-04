@@ -37,15 +37,10 @@ function draw() {
     if (planetArray[i].x < -100) {
       planetArray.splice(i, 1);
     } else {
-      characterPlanetDist = dist(
-        planetArray[i].x,
-        planetArray[i].y,
-        character.x,
-        character.y
-      );
       if (
-        characterPlanetDist <= planetArray[i].r + character.rX ||
-        characterPlanetDist <= planetArray[i].r + character.rY
+        abs(character.x - planetArray[i].x) <=
+          planetArray[i].r + character.rX &&
+        abs(character.y - planetArray[i].y) <= planetArray[i].r + character.rY
       ) {
         console.log("collision");
       }
