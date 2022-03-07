@@ -4,6 +4,7 @@ let newAmp;
 let planetArray = [];
 function preload() {
   sound = loadSound("../assets/07. Pocky Boy.mp3");
+  bg = loadImage("../assets/bg.png");
 }
 let healthBarFull;
 let cnv;
@@ -24,6 +25,7 @@ let newSum = 0;
 let oldFc = -60;
 let gameScene = 0;
 function draw() {
+  background(bg);
   fill("white");
   switch (gameScene) {
     case 0:
@@ -33,7 +35,7 @@ function draw() {
       break;
     case 1:
       newSum = 0;
-      background(220);
+
       character.draw();
       character.move();
 
@@ -76,6 +78,7 @@ function draw() {
         planetArray[i].move();
         if (planetArray[i].x < -100) {
           planetArray.splice(i, 1);
+          console.log("gone");
         } else {
           if (
             abs(character.x - planetArray[i].x) <=
