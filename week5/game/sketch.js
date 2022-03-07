@@ -124,9 +124,41 @@ class Planet {
     this.vel = -0.1;
     this.acc = -0.01;
     this.yOrientation = 1;
+    this.type = 1;
   }
   draw() {
-    circle(this.x, this.y, this.r);
+    let baseLayer = createGraphics(this.r * 2, this.r * 2);
+    let circleMask = createGraphics(this.r * 2, this.r * 2);
+    circleMask.fill("rgba(0, 0, 0, 1)");
+    circleMask.circle(this.r, this.r, this.r * 2);
+    if (this.type == 1) {
+      baseLayer.background("white");
+      let size = 20;
+      for (let i = 0; i < baseLayer.width; i += size) {
+        for (let j = 0; j < baseLayer.height; j += size) {
+          let rand = floor(random(0, 2));
+          if (rand == 0) {
+            baseLayer.line(i, j, i + size, j + size);
+          } else {
+            baseLayer.line(i, j + size, i + size, j);
+          }
+        }
+      }
+    }
+    let img = createImage(baseLayer.width, baseLayer.height);
+    img.copy(
+      baseLayer,
+      0,
+      0,
+      baseLayer.width,
+      baseLayer.height,
+      0,
+      0,
+      baseLayer.width,
+      baseLayer.height
+    );
+    img.mask(circleMask);
+    image(img, this.x, this.y);
   }
   move() {
     this.x += this.vel;
