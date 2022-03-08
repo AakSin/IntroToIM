@@ -13,11 +13,24 @@ function setup() {
 
   cnv = createCanvas(windowWidth, windowHeight);
   fft = new p5.FFT(0.8, 256);
-  frameRate(60);
   character = new Character();
   rectMode(RADIUS);
   ellipseMode(RADIUS);
   sound.amp(0.2);
+  numDivs = 1500;
+  radius = 10;
+
+  sizes = [];
+  speed = [];
+  radi = [];
+  for (a = 0; a < TAU; a += TAU / numDivs) {
+    sizes.push(random(0.1, 1.1));
+    speed.push(random(2, 5));
+    radi.push(random());
+  }
+
+  FPS = 60;
+  frameRate(FPS);
 
   healthBarFull = character.health;
 }
@@ -26,7 +39,34 @@ let newSum = 0;
 let oldFc = -60;
 let gameScene = 0;
 function draw() {
-  background(bg);
+  background(0, 40);
+  push();
+  translate(width / 2, height / 2);
+
+  t = frameCount / FPS / 3;
+
+  for (n = 0; n < numDivs; n++) {
+    a = (TAU / numDivs) * n + t / speed[n];
+
+    r = radius + radi[n] * 1000;
+    x = r * sin(a);
+    y = r * cos(a) + (r * sin(a)) / 500;
+
+    d = dist(0, 0, x, y);
+
+    strokeWeight(sin(d / 20 + t + a) * 2 + 2 + sizes[n]);
+    stroke(
+      127.5 + 127.5 * sin(x / 2 + y / 2),
+      127.5 + 127.5 * cos(x / 2 + y / 2),
+      127.5
+    );
+
+    x = r * sin(d / 10 + a);
+    y = r * cos(d / 10 + a) + (r * sin(a)) / 500;
+
+    point(x, y);
+  }
+  pop();
   fill("white");
   switch (gameScene) {
     case 0:
@@ -50,7 +90,6 @@ function draw() {
             planet.setup();
             planetArray.push(planet);
             print("spawn");
-            print(planetArray);
             oldFc = frameCount;
           }
         } else if (
@@ -63,12 +102,12 @@ function draw() {
           // console.log(newSum - oldSum);
           if (newSum - oldSum > 25 && frameCount - oldFc > 30) {
             let planet = new Planet();
+            planet.setup();
             planetArray.push(planet);
             print("spawn");
             oldFc = frameCount;
           }
         }
-
         oldSum = newSum;
       }
 
@@ -112,7 +151,7 @@ function togglePlay() {
     sound.pause();
   } else {
     sound.play();
-    sound.jump(70);
+    // sound.jump(70);
     amplitude = new p5.Amplitude();
     amplitude.setInput(sound);
   }
