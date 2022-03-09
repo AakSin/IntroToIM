@@ -5,7 +5,9 @@ let planetArray = [];
 function preload() {
   sound = loadSound("../assets/07. Pocky Boy.mp3");
   bg = loadImage("../assets/bg.png");
+  sprite = loadImage("../assets/sprite.png");
 }
+let fullHealth;
 let healthBarFull;
 let cnv;
 function setup() {
@@ -14,8 +16,6 @@ function setup() {
   cnv = createCanvas(windowWidth, windowHeight);
   fft = new p5.FFT(0.8, 256);
   character = new Character();
-  rectMode(RADIUS);
-  ellipseMode(RADIUS);
   sound.amp(0.2);
   numDivs = 1500;
   radius = 10;
@@ -31,20 +31,20 @@ function setup() {
 
   FPS = 60;
   frameRate(FPS);
-
-  healthBarFull = character.health;
+  fullHealth = character.health;
+  healthBarFull = width - width / 2;
 }
 let oldSum = 0;
 let newSum = 0;
 let oldFc = -60;
 let gameScene = 0;
+let spinner = 3;
 function draw() {
   background(0, 40);
   push();
   translate(width / 2, height / 2);
 
-  t = frameCount / FPS / 3;
-
+  t = frameCount / FPS / spinner;
   for (n = 0; n < numDivs; n++) {
     a = (TAU / numDivs) * n + t / speed[n];
 
@@ -66,7 +66,7 @@ function draw() {
 
     point(x, y);
   }
-  pop();
+
   fill("white");
   switch (gameScene) {
     case 0:
@@ -75,6 +75,7 @@ function draw() {
       cnv.mouseClicked(togglePlay);
       break;
     case 1:
+      pop();
       newSum = 0;
       if (sound.isPlaying()) {
         let spectrum = fft.analyze();
@@ -108,6 +109,8 @@ function draw() {
             oldFc = frameCount;
           }
         }
+        spinner = (oldSum - newSum) / 5 || 3;
+        numDivs = (oldSum - newSum) * 5 || 1500;
         oldSum = newSum;
       }
 
@@ -119,10 +122,8 @@ function draw() {
           console.log("gone");
         } else {
           if (
-            abs(character.x - planetArray[i].x - planetArray[i].r) <=
-              planetArray[i].r + character.rX &&
-            abs(character.y - planetArray[i].y - planetArray[i].r) <=
-              planetArray[i].r + character.rY
+            abs(character.x - planetArray[i].x) <= character.w &&
+            abs(character.y - planetArray[i].y) <= character.h
           ) {
             character.health -= 0.5;
           }
@@ -130,16 +131,14 @@ function draw() {
       }
       character.draw();
       character.move();
-      let healthBarRed = character.health;
-      fill("black");
-      rect(width - healthBarFull - 50, 40, healthBarFull, 10);
+      stroke("white");
+      strokeWeight(3);
+      let healthBarRed = map(character.health, 0, fullHealth, 0, healthBarFull);
+      fill("white");
+      rect(width / 2 - healthBarFull / 2, 40, healthBarFull, 15);
       fill("red");
-      rect(
-        width - healthBarFull - 50 - (healthBarFull - healthBarRed),
-        40,
-        healthBarRed,
-        10
-      );
+      rect(width / 2 - healthBarFull / 2, 40, healthBarRed, 15);
+      noStroke();
       if (healthBarRed == 0) {
         alert("Stop");
       }
