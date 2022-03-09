@@ -1,11 +1,12 @@
 class Planet {
   constructor() {
     this.x = width - 50;
-    this.originalY = random(0, height);
+    this.originalY = random(50, height - 50);
     this.y = this.originalY;
     this.r = random(70, 120);
-    this.vel = -5;
-    this.acc = -0.03;
+    this.vel = random(-5, -10);
+    this.acc = random(-0.05, -0.1);
+    this.travelDist = random(50, 100);
     this.yOrientation = 1;
     this.type = floor(random(1, 10));
     this.baseLayer = createGraphics(this.r * 2, this.r * 2);
@@ -156,7 +157,7 @@ class Planet {
     // } else {
     //   this.x -= noise(frameCount);
     // }
-    if (abs(this.y - this.originalY) > 75) {
+    if (abs(this.y - this.originalY) > this.travelDist) {
       this.yOrientation *= -1;
     }
     this.y += this.yOrientation * noise(frameCount) * 3;
