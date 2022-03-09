@@ -6,12 +6,20 @@ function preload() {
   sound = loadSound("../assets/07. Pocky Boy.mp3");
   bg = loadImage("../assets/bg.png");
   sprite = loadImage("../assets/sprite.png");
+  font = loadFont("../assets/loveglitch.ttf");
 }
 let fullHealth;
 let healthBarFull;
 let cnv;
+let bbox;
+let isPaused = false;
+let gameTitle = "Glitch Princess";
+let menuScreen = "click to start \n click in game to pause";
 function setup() {
   noStroke();
+  textFont(font);
+  textAlign(CENTER);
+  bbox = font.textBounds(gameTitle, 0, 0, 100);
 
   cnv = createCanvas(windowWidth, windowHeight);
   fft = new p5.FFT(0.8, 256);
@@ -28,7 +36,6 @@ function setup() {
     speed.push(random(2, 5));
     radi.push(random());
   }
-
   FPS = 60;
   frameRate(FPS);
   fullHealth = character.health;
@@ -70,8 +77,11 @@ function draw() {
   fill("white");
   switch (gameScene) {
     case 0:
-      fill(0, 102, 153);
-      text("click to start", 100, 100);
+      fill("white");
+      textSize(100);
+      text(gameTitle, 0, 0 - bbox.h / 2);
+      textSize(50);
+      text(menuScreen, 0, bbox.h);
       cnv.mouseClicked(togglePlay);
       break;
     case 1:
@@ -114,23 +124,25 @@ function draw() {
         oldSum = newSum;
       }
 
-      for (let i = planetArray.length - 1; i >= 0; i--) {
-        planetArray[i].draw();
-        planetArray[i].move();
-        if (planetArray[i].x < -100) {
-          planetArray.splice(i, 1);
-          console.log("gone");
-        } else {
-          if (
-            abs(character.x - planetArray[i].x) <= character.w &&
-            abs(character.y - planetArray[i].y) <= character.h
-          ) {
-            character.health -= 0.5;
+      if (!isPaused) {
+        for (let i = planetArray.length - 1; i >= 0; i--) {
+          planetArray[i].draw();
+          planetArray[i].move();
+          if (planetArray[i].x < -100) {
+            planetArray.splice(i, 1);
+            console.log("gone");
+          } else {
+            if (
+              abs(character.x - planetArray[i].x) <= character.w &&
+              abs(character.y - planetArray[i].y) <= character.h
+            ) {
+              character.health -= 0.5;
+            }
           }
         }
+        character.draw();
+        character.move();
       }
-      character.draw();
-      character.move();
       stroke("white");
       strokeWeight(3);
       let healthBarRed = map(character.health, 0, fullHealth, 0, healthBarFull);
@@ -140,19 +152,41 @@ function draw() {
       rect(width / 2 - healthBarFull / 2, 40, healthBarRed, 15);
       noStroke();
       if (healthBarRed == 0) {
-        alert("Stop");
+        gameScene = 2;
       }
+      if (sound.currentTime() > 240) {
+        gameScene = 3;
+      }
+      break;
+    case 2:
+      reset();
+      text("Game Over \n click to start again", 0, 0);
+      break;
+    case 3:
+      reset();
+      text("You won the game! \n click to start again", 0, 0);
+      break;
   }
 }
 
 function togglePlay() {
   if (sound.isPlaying()) {
     sound.pause();
+    isPaused = true;
   } else {
     sound.play();
-    // sound.jump(70);
+    sound.jump(230);
     amplitude = new p5.Amplitude();
     amplitude.setInput(sound);
+    isPaused = false;
   }
   gameScene = 1;
+}
+
+function reset() {
+  sound.stop();
+  character.x = 200;
+  character.y = 200;
+  character.health = fullHealth;
+  planetArray = [];
 }
