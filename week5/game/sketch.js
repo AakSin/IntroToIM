@@ -5,8 +5,14 @@ let planetArray = [];
 function preload() {
   sound = loadSound("../assets/07. Pocky Boy.mp3");
   bg = loadImage("../assets/bg.png");
-  sprite = loadImage("../assets/sprite.png");
+  yeule = loadImage("../assets/yeule.png");
   font = loadFont("../assets/loveglitch.ttf");
+  asteroid = loadImage("../assets/asteroid.png");
+  earth = loadImage("../assets/earth.png");
+  mars = loadImage("../assets/mars.png");
+  ice = loadImage("../assets/ice.png");
+  star = loadImage("../assets/star.png");
+  galaxy = loadImage("../assets/galaxy.png");
 }
 let fullHealth;
 let healthBarFull;
@@ -175,7 +181,6 @@ function togglePlay() {
     isPaused = true;
   } else {
     sound.play();
-    sound.jump(230);
     amplitude = new p5.Amplitude();
     amplitude.setInput(sound);
     isPaused = false;

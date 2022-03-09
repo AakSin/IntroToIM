@@ -4,11 +4,11 @@ class Character {
     this.y = 200;
     this.w = 247;
     this.h = 190.75;
-    this.health = 10;
+    this.health = 500;
   }
   draw() {
     // rect(this.x, this.y, this.rX, this.rY);
-    image(sprite, this.x, this.y, this.w, this.h);
+    image(yeule, this.x, this.y, this.w, this.h);
   }
   move() {
     if (-this.w / 2 < this.x && this.x < width - this.w / 2) {
