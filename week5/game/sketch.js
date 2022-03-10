@@ -2,18 +2,6 @@ let character;
 let oldAmp = 0;
 let newAmp;
 let planetArray = [];
-function preload() {
-  sound = loadSound("../assets/07. Pocky Boy.mp3");
-  bg = loadImage("../assets/bg.png");
-  yeule = loadImage("../assets/pxArt.png");
-  font = loadFont("../assets/loveglitch.ttf");
-  asteroid = loadImage("../assets/asteroid.png");
-  earth = loadImage("../assets/earth.png");
-  mars = loadImage("../assets/mars.png");
-  ice = loadImage("../assets/ice.png");
-  star = loadImage("../assets/star.png");
-  galaxy = loadImage("../assets/galaxy.png");
-}
 let fullHealth;
 let healthBarFull;
 let cnv;
@@ -22,22 +10,44 @@ let isPaused = false;
 let gameTitle = "Glitch Princess";
 let menuScreen =
   "click to start \n click in game to pause \n arrow keys to move";
+
+function preload() {
+  sound = loadSound("../assets/07. Pocky Boy.mp3");
+
+  bg = loadImage("../assets/bg.png");
+
+  yeule = loadImage("../assets/pxArt.png");
+
+  font = loadFont("../assets/loveglitch.ttf");
+
+  asteroid = loadImage("../assets/asteroid.png");
+  earth = loadImage("../assets/earth.png");
+  mars = loadImage("../assets/mars.png");
+  ice = loadImage("../assets/ice.png");
+  star = loadImage("../assets/star.png");
+  galaxy = loadImage("../assets/galaxy.png");
+}
+
 function setup() {
   noStroke();
   textFont(font);
   textAlign(CENTER);
+
   bbox = font.textBounds(gameTitle, 0, 0, 100);
 
   cnv = createCanvas(windowWidth, windowHeight);
+
   fft = new p5.FFT(0.8, 256);
   character = new Character();
   sound.amp(0.2);
+
+  // set up for background nebula
   numDivs = 1500;
   radius = 10;
-
   sizes = [];
   speed = [];
   radi = [];
+  // TAU = PI * 2
   for (a = 0; a < TAU; a += TAU / numDivs) {
     sizes.push(random(0.1, 1.1));
     speed.push(random(2, 5));
@@ -45,14 +55,20 @@ function setup() {
   }
   FPS = 60;
   frameRate(FPS);
+
+  // setup for health bar
   fullHealth = character.health;
   healthBarFull = width - width / 2;
 }
+
+// variables going to be used in draw, here for quick access
 let oldSum = 0;
 let newSum = 0;
+//  Fc = frame count
 let oldFc = -60;
 let gameScene = 0;
 let spinner = 3;
+
 function draw() {
   background(0, 40);
   push();
@@ -96,13 +112,16 @@ function draw() {
       newSum = 0;
       if (sound.isPlaying()) {
         let spectrum = fft.analyze();
+        // synth part of song
         if (
           sound.currentTime() < 73 ||
           (sound.currentTime() >= 103 && sound.currentTime() < 133)
         ) {
+          // frequencies between 60 and 100
           for (let i = 60; i < 100; i++) {
             newSum += spectrum[i];
           }
+          // if their sum is more than 400 and the events happened 30 frames apart
           if (newSum - oldSum > 400 && frameCount - oldFc > 30) {
             let planet = new Planet();
             planet.setup();
@@ -110,14 +129,17 @@ function draw() {
             print("spawn");
             oldFc = frameCount;
           }
-        } else if (
+        }
+        // drum part of song
+        else if (
           (sound.currentTime() >= 73 && sound.currentTime() < 103) ||
           sound.currentTime() >= 132
         ) {
+          // frequencies between 0 and 10
           for (let i = 0; i < 10; i++) {
             newSum += spectrum[i];
           }
-          // console.log(newSum - oldSum);
+          // if their sum is more than 25 and the events happened 30 frames apart
           if (newSum - oldSum > 25 && frameCount - oldFc > 30) {
             let planet = new Planet();
             planet.setup();
@@ -139,6 +161,7 @@ function draw() {
             planetArray.splice(i, 1);
             console.log("gone");
           } else {
+            // checking distance between sprite and planet
             if (
               abs(character.x - planetArray[i].x) <= character.w &&
               abs(character.y - planetArray[i].y) <= character.h

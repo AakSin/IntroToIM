@@ -23,10 +23,13 @@ class Planet {
     this.sprites = [];
   }
   setup() {
+    // non sprite planets
     if (this.type < 4) {
       this.circleMask.fill("rgba(0, 0, 0, 1)");
       this.circleMask.circle(this.r, this.r, this.r * 2);
-    } else if (this.type == 4) {
+    }
+    // my hand drawn planet with 15 frames
+    else if (this.type == 4) {
       let sprite = asteroid;
       let spriteXNo = 5;
       let spriteYNo = 3;
@@ -38,7 +41,9 @@ class Planet {
           this.sprites.push(spriteSmall);
         }
       }
-    } else {
+    }
+    // assets from the internet with 60 frames
+    else {
       let sprite;
       if (this.type == 5) {
         sprite = earth;
@@ -65,6 +70,7 @@ class Planet {
   }
   draw() {
     if (this.type < 4) {
+      // 10print planet
       if (this.type == 1) {
         this.baseLayer.background(this.tenPbackground);
         this.baseLayer.stroke("white");
@@ -82,6 +88,7 @@ class Planet {
           }
         }
         this.baseLayer.noStroke();
+        // this part of the code is necessary to generate the smoke that will make it look as if the planet is rotating
         for (let i = 0; i < this.baseLayer.width; i += this.smokeSize) {
           for (let j = 0; j < this.baseLayer.height; j += this.smokeSize) {
             this.baseLayer.fill(
@@ -91,7 +98,9 @@ class Planet {
             this.baseLayer.rect(i, j, this.smokeSize);
           }
         }
-      } else if (this.type == 2) {
+      }
+      // smoke planet
+      else if (this.type == 2) {
         this.baseLayer.noStroke();
         for (let i = 0; i < this.baseLayer.width; i += this.smokeSize) {
           for (let j = 0; j < this.baseLayer.height; j += this.smokeSize) {
@@ -105,7 +114,9 @@ class Planet {
             this.baseLayer.rect(i, j, this.smokeSize);
           }
         }
-      } else if (this.type == 3) {
+      }
+      // glitch planet
+      else if (this.type == 3) {
         this.baseLayer.noStroke();
         for (let i = 0; i < this.baseLayer.width; i += this.smokeSize) {
           for (let j = 0; j < this.baseLayer.height; j += this.smokeSize) {
@@ -121,6 +132,7 @@ class Planet {
           }
         }
       }
+      // copying graphic to image, because masks only work on images
       let img = createImage(this.baseLayer.width, this.baseLayer.height);
       img.copy(
         this.baseLayer,
@@ -137,6 +149,7 @@ class Planet {
       image(img, this.x, this.y);
     } else {
       push();
+      // tinting the sprite planets with a random color each time
       tint(this.tenPbackground);
       image(
         this.sprites[frameCount % this.sprites.length],
@@ -151,15 +164,11 @@ class Planet {
   move() {
     this.x += this.vel;
     this.vel += this.acc;
-    // let orientation = floor(random(0, 2));
-    // if (orientation == 0) {
-    //   this.x += noise(frameCount);
-    // } else {
-    //   this.x -= noise(frameCount);
-    // }
+    // flip if it exceeds travel distance
     if (abs(this.y - this.originalY) > this.travelDist) {
       this.yOrientation *= -1;
     }
+    // gentle bobbing motion
     this.y += this.yOrientation * noise(frameCount) * 3;
   }
 }
