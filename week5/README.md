@@ -1,3 +1,4 @@
+Hosted live on [https://aaksin.github.io/IntroToIM/week5/game](https://aaksin.github.io/IntroToIM/week5/game)
 # Week 5
 ## Concepts, Sketches and Ideas
 
