@@ -5,7 +5,7 @@ let planetArray = [];
 function preload() {
   sound = loadSound("../assets/07. Pocky Boy.mp3");
   bg = loadImage("../assets/bg.png");
-  yeule = loadImage("../assets/yeule.png");
+  yeule = loadImage("../assets/pxArt.png");
   font = loadFont("../assets/loveglitch.ttf");
   asteroid = loadImage("../assets/asteroid.png");
   earth = loadImage("../assets/earth.png");
@@ -149,14 +149,21 @@ function draw() {
         character.draw();
         character.move();
       }
-      stroke("white");
-      strokeWeight(3);
-      let healthBarRed = map(character.health, 0, fullHealth, 0, healthBarFull);
-      fill("white");
-      rect(width / 2 - healthBarFull / 2, 40, healthBarFull, 15);
-      fill("red");
-      rect(width / 2 - healthBarFull / 2, 40, healthBarRed, 15);
+      stroke(255, 230, 230);
+      strokeWeight(2);
+      let healthBarRed = map(
+        character.health,
+        0,
+        fullHealth,
+        0,
+        healthBarFull - 10
+      );
+      fill(26, 26, 26);
+      rect(width / 2 - healthBarFull / 2, 40, healthBarFull, 20);
       noStroke();
+      fill(237, 57, 57);
+      rect(width / 2 - healthBarFull / 2 + 5, 40 + 5, healthBarRed, 10);
+
       if (healthBarRed == 0) {
         gameScene = 2;
       }

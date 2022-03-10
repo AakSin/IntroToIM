@@ -2,8 +2,8 @@ class Character {
   constructor() {
     this.x = 200;
     this.y = 200;
-    this.w = 247;
-    this.h = 190.75;
+    this.w = 988 / 5;
+    this.h = 763 / 5;
     this.health = 500;
   }
   draw() {
