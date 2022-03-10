@@ -20,7 +20,8 @@ let cnv;
 let bbox;
 let isPaused = false;
 let gameTitle = "Glitch Princess";
-let menuScreen = "click to start \n click in game to pause";
+let menuScreen =
+  "click to start \n click in game to pause \n arrow keys to move";
 function setup() {
   noStroke();
   textFont(font);
