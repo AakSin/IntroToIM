@@ -120,8 +120,8 @@ I have programmed now for about a decent bit of time but it was always without a
 
 ## Credits
 
-(Ahmed Moussa's p5 sketch of a galaxy)[https://editor.p5js.org/AhmadMoussa/sketches/euZJvkj5i]
+[Ahmed Moussa's p5 sketch of a galaxy](https://editor.p5js.org/AhmadMoussa/sketches/euZJvkj5i)
 
-(Deep Fold's pixel planet generator) [https://deep-fold.itch.io/pixel-planet-generator]
+[Deep Fold's pixel planet generator](https://deep-fold.itch.io/pixel-planet-generator)
 
-Of course, (Pocky Boy by Yeule)[https://www.youtube.com/watch?v=muCYlrHjg3o]
+Of course, [Pocky Boy by Yeule](https://www.youtube.com/watch?v=muCYlrHjg3o)
