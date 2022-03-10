@@ -82,7 +82,7 @@ https://github.com/AakSin/IntroToIM/blob/efa10d2c73a20d9cda46b1ac82ac8e04feaaddb
 
 ## Learnings
 
-The 2 main learnings for me were mainly in -
+
 
 ### Art
 
@@ -91,6 +91,24 @@ first art piece done by me (no joke, start to finish, sketching to painting for 
 drawing with lighting etc. I explored frame by frame animation on Procreate as well with the 15 frame spritesheet shown above. I learnt the basics and I'd like to explore this more.
 
 ### Music Analysis
+
+I spent a lot of time on this process. As you can see in the uploaded files, it contains both amplitude and frequency analysis. I understand the concept of amplitudes, frequencies etc. more meaningfully and especially have a better understanding of extracting meaningful data from music. I have been telling proffesor 
+that I had wanted to do a music visualizer for so long, and it was nice to finally get it done.
+
+### OOP (Object Oriented Programming)
+
+I have programmed now for about a decent bit of time but it was always without any formal training. So yes I had learnt about the concept of OOP, modularity, classes etc. but it never sunk in. With this game, I feel like I finally understand how to write more modular code especially using OOP. I feel like I have never used classes at the level I used them at here. Nearly every attribute of the planets were generated randomly and I am very proud of that fact.
+
+## To-Do
+
+- Draw frame by frame animation for Yeule (main character sprite) so that her hair floats, skirt floats, legs kick etc. 
+- Add a story line
+- Add a better end screen
+- Look more into optimization of code
+- Add music to home screen
+- Make health bar look better
+- Add some sort of monsters that maybe you can shoot down or fight
+- Remix the music my own way so I can learn more about music production and remixing as well
 
 ## Credits
 
