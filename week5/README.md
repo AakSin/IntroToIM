@@ -88,6 +88,11 @@ https://github.com/AakSin/IntroToIM/blob/efa10d2c73a20d9cda46b1ac82ac8e04feaaddb
 
 https://github.com/AakSin/IntroToIM/blob/efa10d2c73a20d9cda46b1ac82ac8e04feaaddb3/week5/game/sketch.js#L151-L152
 
+- NOTE: A brief note on the procedurally generated planets: one of the planets is 10 print with a random background. The other planet is smoke I had written for an
+assignment to use noise, I just figured out how to randomly color it. The third planet was coded for this game and it basically assigns a random color value to each pixel hence creating this kind of glitch disco ball effect. Snippet linked below.
+
+https://github.com/AakSin/IntroToIM/blob/efa10d2c73a20d9cda46b1ac82ac8e04feaaddb3/week5/game/planet.js#L119-L131
+
 ## Learnings
 
 
