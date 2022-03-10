@@ -33,12 +33,20 @@ writing code for the generative art planets (I plan on using createGraphics and 
 
 # Week 6 and 7
 
+## Description & Game Play
+
+The game is based on Singaporean songwriter and producer [Yeule](https://en.wikipedia.org/wiki/Yeule). She is floating in space and planets are generated to certain music trigger events. The planets are randomly generated and have random attributes like size, speed, acceleration, y-axis travel distance etc. hence you have to be on your toes all the time. You lose the game if your health drops to 0. You win the game if you survive the entire song. With both of these options you can chose to start again.
+
 ## Concept and Art
 
 I realized chosing the music was quintessential for me to proceed with my project. I spent some time listening to tracks that matched the final sketch I had done and finalized [Pocky Boy by Yeule](https://www.youtube.com/watch?v=muCYlrHjg3o).
 I started sketching her out based on her outfit and makeup in Serotonin II (the album pocky boy is from). Here's her side by side with a reference pic on Procreate.
 
 <img src="https://i.imgur.com/Cnnpapq.jpg">
+
+The game is titled Glitch Princess after her latest album + the aesthetics she has generated. These aesthetics have inspired my creative prcoess a lot, as I feel like there is no one pushing the boundaries of music, art, video,fashion or production like her
+
+
 
 I was also looking to make my own background and here is a version I came up with on procreate. It didn't match the game's color pallete and hence I didn't stick with it.
 Instead I went for a coded background that reacts to music.
@@ -116,4 +124,4 @@ I have programmed now for about a decent bit of time but it was always without a
 
 (Deep Fold's pixel planet generator) [https://deep-fold.itch.io/pixel-planet-generator]
 
-
+Of course, (Pocky Boy by Yeule)[https://www.youtube.com/watch?v=muCYlrHjg3o]
