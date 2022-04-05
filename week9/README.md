@@ -18,6 +18,9 @@ So, the concept of the game is to keep tapping the button in time with the Yello
 The coding was fairly straightforward for the most part. We had been taught how to use the potentiometer, so I used the value of that as a delay for the yellow LED. Controlling an LED with a button was taught as well. The challenges I encountered were - 
 
 - delay() delays the entire program and that was causing issues in my program. I asked the professor for help with this and she sent me the example code for making an LED blink without delay. It involved counting the difference in milliseconds each time the program is ran.
+
+https://github.com/AakSin/IntroToIM/blob/d58f5a797c1a0ba66065fb40c8fde13cf79bf2b8/week9/Week_9_Assignment.ino#L31-L41
+
 - I wanted to know when both the LEDs were on and I was wondering if there was a way to check the state of an output. Professor then told me to just store it in a variable as I was the one setting the state.
 
 # Learnings & To-Do
