@@ -11,4 +11,6 @@
 
 # Final Project Idea
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Reality_check_ESA384313.jpg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Reality_check_ESA384313.jpg" width="500">
+
+Soumen's idea was to create a sort of 3D painting app in p5 which would be controlled by some sensors on an arudino. My idea was to create a sort of rudimentry VR setup wherein accelrometers on an arduino could be used as joysticks and a phone with google cardboard in it (running our p5.js website) be the headset. Him and I soon realized we had a lot of similarities in our projects and decided to combine it to create a 3D painting app in p5.js which will be controlled by multiple sensors on the arduino - accelerometer, joystick, buttons etc.
