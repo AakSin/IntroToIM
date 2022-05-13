@@ -11,4 +11,11 @@ Project hosted live on <a href="https://aframesockets.glitch.me/"> https://afram
  
  ## Track
  
- <img src="https://i.gyazo.com/e7c96f0053385ef591e8ac9e0d6de8eb.gif">
+ <img src="./track.gif">
+Track is a 3D/VR experience created using Three.js. It involves the user travelling forward in a 3D space as the lighting, color, shapes etc. change around them. All of it is set to music. When we looked at it, we realzied we wanted to move in a similar abstract direction. We still needed more inspiration in terms of what kind of art to create. 
+
+## 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson
+
+<img src="https://images-na.ssl-images-amazon.com/images/I/615ncUaZ0+L._SX430_BO1,204,203,200_.jpg"> 
+
+At this point when we got introduced to the book we had <a href="https://aframe.io/"> aframe </a> (a JS library) set up and the arduino set up as well. We had some sort of idea of what we could do with aframe. Our professor gave us this book titled 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson which included various forms of psychedlic artworks as well as text about how psychedelic art came to be. Learning some theory about psychedlic art helped us conceptualize more.
