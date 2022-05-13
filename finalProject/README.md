@@ -38,7 +38,7 @@ Genesis by Grimes was crucial for the concept of this project to come to fruitio
 
 The project works using an accelerometers and two buttons for input. Soumen had worked with an accelerometer and he got that working very quickly. We then got to working on wireless communication. The XBEE devices gave us quite some trouble but after some toying around we were able to get it going. The buttons were soldered and done in the end. It was all put in an encasing that resembles a periscope. 
 
-```
+```js
  accel.read();
 
       String packet = String(accel.cx);
@@ -79,6 +79,94 @@ The project works using an accelerometers and two buttons for input. Soumen had 
 ## Software
 
 The code is written using aframe. The world is initiliazed in aframe using the aframe-environment component. Then I coded 50 layers of 9 balls each. Then I set animations of rotate, expansion and size change on them. Then I set a delay on them to make chaotic patterns emerge from the chaos. The VR visualizer would still run on our phone using a google cardboard type of device. Hence, I wrote a socket.js express node.js web server that would send data from the laptop to phone whenver change was detected.
+
+```js
+for (let i = 0; i < 50; i++) {
+    rVal += 5;
+    // rVal %= 250
+    parentEntityEl = document.createElement("a-entity");
+    parentEntityEl.classList.add("parent");
+    parentEntityEl.setAttribute("position", {
+      x: "0",
+      y: i + 150,
+      z: "0",
+    });
+    parentEntityEl.setAttribute("animation", {
+      property: "rotation",
+      delay: i * 100,
+      from: {
+        x: "90",
+        y: "0",
+        z: "0",
+      },
+      to: {
+        x: "90",
+        y: "0",
+        z: "360",
+      },
+      loop: true,
+      dur: 5000,
+
+      easing: "easeOutCubic",
+    });
+    
+    for (let j = 0; j < circleNo; j++) {
+      let entityEl = document.createElement("a-sphere");
+      // let color =`rgb(${rVal},165,0)`;
+      // let ballColor = Math.floor(Math.random()*16777215).toString(16);
+      let ballColor = "rgb(255,255,255)";
+      // Do `.setAttribute()`s to initialize the entity.
+      entityEl.setAttribute("geometry", {
+        radius: "0.5",
+      });
+      entityEl.setAttribute("material", {
+        // color: "white",
+        color: ballColor,
+      });
+      // entityEl.setAttribute("material", {
+      //   shader: "flat",
+      // });
+      // console.log(Math.cos(i*(Math.PI/circleNo)*4),Math.sin(i*(Math.PI/circleNo)*4) )
+
+      entityEl.setAttribute("animation__shrink", {
+        property: "geometry.radius",
+        delay: i * 100,
+        to: "1",
+        from: "0.5",
+        loop: true,
+        dur: 5000,
+
+        easing: "easeOutCubic",
+
+        dir: "alternate",
+      });
+      entityEl.setAttribute("animation", {
+        property: "position",
+        delay: i * 100,
+        from: {
+          x: Math.cos(j * ((Math.PI * 2) / circleNo)) * 1,
+          y: Math.sin(j * ((Math.PI * 2) / circleNo)) * 1,
+          z: 4 * i,
+        },
+        to: {
+          x: Math.cos(j * ((Math.PI * 2) / circleNo)) * 20,
+          y: Math.sin(j * ((Math.PI * 2) / circleNo)) * 20,
+          z: 4 * i,
+        },
+        loop: true,
+        dur: 5000,
+
+        easing: "easeOutCubic",
+
+        dir: "alternate",
+      });
+
+      parentEntityEl.appendChild(entityEl);
+    }
+    sceneEl.appendChild(parentEntityEl);
+  }
+});
+```
 
 ## Software + Hardware
 
