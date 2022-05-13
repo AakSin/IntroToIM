@@ -1,4 +1,4 @@
-Software code hsoted live on <a href="https://glitch.com/edit/#!/aframesockets"> https://glitch.com/edit/#!/aframesockets </a>.
+Software code hosted live on <a href="https://glitch.com/edit/#!/aframesockets"> https://glitch.com/edit/#!/aframesockets </a>.
 
 Hardware code is present in the repo.
 
@@ -41,7 +41,7 @@ Genesis by Grimes was crucial for the concept of this project to come to fruitio
 
 The project works using an accelerometers and two buttons for input. Soumen had worked with an accelerometer and he got that working very quickly. We then got to working on wireless communication. The XBEE devices gave us quite some trouble but after some toying around we were able to get it going. The buttons were soldered and done in the end. It was all put in an encasing that resembles a periscope. 
 
-```js
+```c++
  accel.read();
 
       String packet = String(accel.cx);
@@ -179,4 +179,138 @@ Upon getting y-axis values, the program counts if a change threshold is crossed.
 
 Upon getting z-axis values, the colors are changed from red to blue upon crossing certain thresholds. The lighting is a mix of red and blue hence it makes sense for the spheres to have intermediate values that are a mix of red and blue.
 
- When Soumen and I decided to work together we both decided we would like to create a VR experience. That's all we knew in the start and we were told by the professor that we had a long way to go conceptually. We started looking all over for inspiration. 
+The buttons are used to make the camera go up or down. The music is emanating from the floor hence, as you get closer to the ground the music becomes louder too.
+
+ ```js
+socket.on("cameraMove", (yPos) => {
+  // console.log(yPos);
+  camera.setAttribute("position", {
+    x: 0,
+    y: yPos,
+    z: 0,
+  });
+});
+socket.on("rotationDur", (duration) => {
+  console.log(Math.floor(duration));
+
+  let allParents = document.querySelectorAll(".parent");
+  for (let i = 0; i < allParents.length; i++) {
+    // print(allParents[i]);
+    allParents[i].setAttribute("animation", {
+      from: {
+        x: "90",
+        y: "0",
+        z: "0",
+      },
+      to: {
+        x: "90",
+        y: "0",
+        z: "360",
+      },
+      dur: Math.floor(duration),
+      // dur: 20000,
+    });
+  }
+});
+socket.on("colorChange", (colorVal) => {
+  let r= Math.floor(colorVal);
+  let b= 255 - Math.floor(colorVal);
+  let allSpheres = document.querySelectorAll("a-sphere");
+  for (let i = 0; i < allSpheres.length; i++) {
+     allSpheres[i].setAttribute("material", {
+        // color: "white",
+        color: `rgb(${r},0,${b})`,
+      });
+  }
+});
+socket.on("spread", (spread) => {
+  console.log(Math.floor(spread));
+
+  let allSpheres = document.querySelectorAll("a-sphere");
+  for (let i = 0; i < allSpheres.length; i++) {
+    // print(allParents[i]);
+    let oldValues = allSpheres[i].getAttribute("animation");
+
+    let newY = 1+ ((oldValues.to.y / 20) * Math.floor(spread));
+
+    // console.log(i,oldValues.to.y,newY)
+    allSpheres[i].setAttribute("animation", {
+      from: {
+        x: oldValues.from.x,
+        y: oldValues.from.y,
+        z: oldValues.from.z,
+      },
+      to: {
+        x: oldValues.to.x,
+        y: newY,
+        z: oldValues.to.z,
+      },
+    });
+  }
+});
+```
+ 
+ # Challenges 
+
+## XBEE
+
+The XBEE was the biggest challnge we faced. It was glitchly, buggy and straight up unresponsive at times. Getting it to work at first was big enough of a challenge. When the module was setup and transmitting data we realized the XBEE couldn't write string values. Hence we had to convert our string packet into a Character array before we sent it over XBee.
+
+```C++
+
+  char* buf = (char*) malloc(sizeof(char) * packet.length() + 1);
+
+//      Serial.println("Using toCharArray");
+      packet.toCharArray(buf, packet.length() + 1);
+
+      Serial.println(buf);
+      XBee.write(buf);
+
+//      Serial.println("Freeing the memory");
+      free(buf);
+//      Serial.println("No leaking!");
+
+      delay(10);
+      XBee.write(13);
+      delay(10);
+      XBee.write(10);
+      delay(10);
+```
+## AFrame
+
+Aframe was a completely new library to me. Getting the animations set up was very challenging as I was still not used to working in a 3D space where lighting and the z-axis was invoved.
+
+## Event Handlers
+
+The hardware sends too much data in realtime for the software to respond in time hence it was a huge challenge for me to figure out how to make it react to changes. Here is where I came with the idea of thresholds and triggering events only when certain numeric values were crossed.
+
+```js
+socket.on("xOrient",(xOrient)=>{
+   
+   if(Math.abs(oldXOrient - xOrient) >= 5000){
+
+     oldXOrient = xOrient
+     io.sockets.emit("rotationDur",xOrient)
+   }
+ })
+  socket.on("yOrient",(yOrient)=>{
+   
+   if(Math.abs(oldYOrient - yOrient) >= 5000){
+
+     oldYOrient = yOrient
+     io.sockets.emit("spread",yOrient/500)
+   }
+ })
+   socket.on("zOrient",(zOrient)=>{
+   
+   if(Math.abs(oldZOrient - zOrient) >= 50){
+
+     oldZOrient = zOrient
+     io.sockets.emit("colorChange",zOrient)
+   }
+ })
+```
+
+## Casing
+
+The casing was something that was hard for us to do since both of us were unfamiliar with crafts. I decided to go with cardboard and spent quite some time making even a simple casing. Make it look good was even a bigger challenge. Duct tape helped us make it in the first place, ribbons helped us make it look better.
