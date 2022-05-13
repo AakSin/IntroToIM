@@ -1,18 +1,24 @@
+# Genesis 
+## A VR Final Project
+![Genesis world screenshot](https://user-images.githubusercontent.com/38569809/168379443-97759a3d-8d55-4065-ac72-7d8a3ae4a584.png)
+
 Software code hosted live on <a href="https://glitch.com/edit/#!/aframesockets"> https://glitch.com/edit/#!/aframesockets </a>.
 
 Hardware code is present in the repo.
 
 Project hosted live on <a href="https://aframesockets.glitch.me/"> https://aframesockets.glitch.me/ </a>.
   
- # Description
+ ## Description
  
- The project is a VR experience titled 'Genesis' set to <a href="https://www.youtube.com/watch?v=1FH-q0I1fJY"> Genesis by Grimes </a>. The website involves spheres revolving around to form patterns and shapes. When connected to our controller made using an Arduino, you can control these patterns by tilting the device.
+ The project is a VR experience titled 'Genesis' set to <a href="https://www.youtube.com/watch?v=1FH-q0I1fJY"> Genesis by Grimes </a>. The visual experience involves spheres revolving around to form patterns and shapes. When connected to our controller made using an Arduino, you can control these patterns by tilting the device. 
  
- # Inspiration
+ The concept of Genesis is to give the user an illusion of creation - which is demonstrated in the visuals in the form of control of particles in an alternate universe with nothing but red towers around. 
  
- When Soumen and I decided to work together we both decided we would like to create a VR experience. That's all we knew in the start and we were told by the professor that we had a long way to go conceptually. We started looking all over for inspiration. 
+ ## Inspiration
  
- ## Track
+We decided to work together we both decided we would like to create a VR experience. That's all we knew in the start and we were told by the professor that we had a long way to go conceptually. We started looking all over for inspiration, and with a little bit of physics and art, we came up with Genesis. 
+ 
+ ## Track - An alternate library (p5js) that was a source of inspiration
  
 <a href="https://imgur.com/F3gP5X9"> Track GIF </a>
 
@@ -22,24 +28,32 @@ Project hosted live on <a href="https://aframesockets.glitch.me/"> https://afram
 
 Track is a 3D/VR experience created using Three.js. It involves the user travelling forward in a 3D space as the lighting, color, shapes etc. change around them. All of it is set to music. When we looked at it, we realzied we wanted to move in a similar abstract direction. We still needed more inspiration in terms of what kind of art to create. 
 
+![image](https://user-images.githubusercontent.com/38569809/168380353-cd5eaa73-8146-4ea4-adf2-019ec46fa5fe.png)
+
+
 ## 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson
 
 <img src="https://images-na.ssl-images-amazon.com/images/I/615ncUaZ0+L._SX430_BO1,204,203,200_.jpg"> 
 
-At this point when we got introduced to the book we had <a href="https://aframe.io/"> aframe </a> (a JS library) set up and the arduino set up as well. We had some sort of idea of what we could do with aframe. Our professor gave us this book titled 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson which included various forms of psychedlic artworks as well as text about how psychedelic art came to be. Learning  theory about psychedlic art helped us conceptualize more.
+At this point when we got introduced to the book we had <a href="https://aframe.io/"> aframe </a> (a JS library) set up and the arduino set up as well. We had some sort of idea of what we could do with aframe. Our professor gave us this book titled 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson which included various forms of psychedlic artworks as well as text about how psychedelic art came to be. Learning  theory about psychedlic art helped us conceptualize more. We realized our visuals were slowly evolving into psychedelic spirals. 
 
 
-## Genesis by Grimes
-
-<img src="https://i.imgur.com/ZDL9xXi.png">
+## Genesis by Grimes - the BGM
 
 Genesis by Grimes was crucial for the concept of this project to come to fruition. I have loved this track since quite some time but I chose to revisit it recently and I realized our project has to revolve around it. Taking support from Grimes' music, the visualizer revolves around imagining our interpreation of genesis - creation of all life. The person is given a wand which they can use to control energy around them to create different arrangements. 
 
 # Execution
-
 ## Harware
 
-The project works using an accelerometers and two buttons for input. Soumen had worked with an accelerometer and he got that working very quickly. We then got to working on wireless communication. The XBEE devices gave us quite some trouble but after some toying around we were able to get it going. The buttons were soldered and done in the end. It was all put in an encasing that resembles a periscope. 
+The project works using an accelerometers and two buttons for input.
+
+The reason we used accelerators was due to the fact that it allowed us to take 3 dimentional input. Since the visual side of the project was to be in a 3 dimentional space, we thought it best to use a sensor that could provide input for the same. Also, the use of such a sensor left a lot of space to experiment with the variables it could control. ![Input sensors](https://user-images.githubusercontent.com/38569809/168381616-38467fa8-68d1-4cf0-975a-e229c2426190.png)
+
+Next, since we would be using a 3D sensor, it made perfect sense to make it wireless - to allow the user complete freedom to move around without being tethered to a wire or getting tangled. 
+
+We used XBEE modules for wireless communication. The devices gave us quite some trouble but after some toying around we were able to get it going. The buttons were soldered and done in the end. It was all put in an encasing that resembles a periscope. 
+![XBEE Modules](https://user-images.githubusercontent.com/38569809/168381717-5fd37588-362a-4007-a709-6ce813ca3ebb.png)
+
 
 ```c++
  accel.read();
@@ -250,9 +264,9 @@ socket.on("spread", (spread) => {
 });
 ```
  
- # Challenges 
+ ## Challenges 
 
-## XBEE
+### XBEE
 
 The XBEE was the biggest challnge we faced. It was glitchly, buggy and straight up unresponsive at times. Getting it to work at first was big enough of a challenge. When the module was setup and transmitting data we realized the XBEE couldn't write string values. Hence we had to convert our string packet into a Character array before we sent it over XBee.
 
@@ -276,11 +290,11 @@ The XBEE was the biggest challnge we faced. It was glitchly, buggy and straight 
       XBee.write(10);
       delay(10);
 ```
-## AFrame
+### AFrame
 
 Aframe was a completely new library to me. Getting the animations set up was very challenging as I was still not used to working in a 3D space where lighting and the z-axis was invoved.
 
-## Event Handlers
+### Event Handlers
 
 The hardware sends too much data in realtime for the software to respond in time hence it was a huge challenge for me to figure out how to make it react to changes. Here is where I came with the idea of thresholds and triggering events only when certain numeric values were crossed.
 
@@ -311,6 +325,6 @@ socket.on("xOrient",(xOrient)=>{
  })
 ```
 
-## Casing
+### Casing
 
 The casing was something that was hard for us to do since both of us were unfamiliar with crafts. I decided to go with cardboard and spent quite some time making even a simple casing. Make it look good was even a bigger challenge. Duct tape helped us make it in the first place, ribbons helped us make it look better.
