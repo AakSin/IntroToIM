@@ -328,3 +328,16 @@ socket.on("xOrient",(xOrient)=>{
 ### Casing
 
 The casing was something that was hard for us to do since both of us were unfamiliar with crafts. I decided to go with cardboard and spent quite some time making even a simple casing. Make it look good was even a bigger challenge. Duct tape helped us make it in the first place, ribbons helped us make it look better.
+
+# Future Steps
+
+## Realtime Changes
+
+The accelerometer sends in a continuous stream of real time data which the software can't keep up with, hence we coded in limiters. Thus sometimes the changes are sudden instead of a smooth gradient. In the future, I'd like to figure out how to make it realtime.
+
+## Music syncing
+This time we were unable to sync the project to real-time music data. Future improvements would include using A-Frame's audio analyzer component along with Web Audio API to make real time music visualisations with particles in the sky, moving towers etc.
+
+## Improve casing
+The casing right now was experimental. We realize we could have done a better job with laser cutting cardboard or even acrylic. The buttons are also popping out due to us not knowing we could use screws to keep them in place. The next version of the casing would be more aesthetic and ergonomic.
+
