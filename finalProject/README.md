@@ -11,7 +11,8 @@ Project hosted live on <a href="https://aframesockets.glitch.me/"> https://afram
  
  ## Track
  
- <img src="./track.gif">
+<a href="https://imgur.com/F3gP5X9"> Track GIF </a>
+<a href="https://demos.littleworkshop.fr/track"> Track Link </a>
 Track is a 3D/VR experience created using Three.js. It involves the user travelling forward in a 3D space as the lighting, color, shapes etc. change around them. All of it is set to music. When we looked at it, we realzied we wanted to move in a similar abstract direction. We still needed more inspiration in terms of what kind of art to create. 
 
 ## 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson
