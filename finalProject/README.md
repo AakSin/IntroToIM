@@ -12,11 +12,42 @@ Project hosted live on <a href="https://aframesockets.glitch.me/"> https://afram
  ## Track
  
 <a href="https://imgur.com/F3gP5X9"> Track GIF </a>
+
+
 <a href="https://demos.littleworkshop.fr/track"> Track Link </a>
+
+
 Track is a 3D/VR experience created using Three.js. It involves the user travelling forward in a 3D space as the lighting, color, shapes etc. change around them. All of it is set to music. When we looked at it, we realzied we wanted to move in a similar abstract direction. We still needed more inspiration in terms of what kind of art to create. 
 
 ## 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson
 
 <img src="https://images-na.ssl-images-amazon.com/images/I/615ncUaZ0+L._SX430_BO1,204,203,200_.jpg"> 
 
-At this point when we got introduced to the book we had <a href="https://aframe.io/"> aframe </a> (a JS library) set up and the arduino set up as well. We had some sort of idea of what we could do with aframe. Our professor gave us this book titled 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson which included various forms of psychedlic artworks as well as text about how psychedelic art came to be. Learning some theory about psychedlic art helped us conceptualize more.
+At this point when we got introduced to the book we had <a href="https://aframe.io/"> aframe </a> (a JS library) set up and the arduino set up as well. We had some sort of idea of what we could do with aframe. Our professor gave us this book titled 'Are you Expreinced: How Psychedelic Consciousness Transformed Modern Art" by Ken Johnson which included various forms of psychedlic artworks as well as text about how psychedelic art came to be. Learning  theory about psychedlic art helped us conceptualize more.
+
+
+## Genesis by Grimes
+
+<img src="https://i.imgur.com/ZDL9xXi.png">
+
+Genesis by Grimes was crucial for the concept of this project to come to fruition. I have loved this track since quite some time but I chose to revisit it recently and I realized our project has to revolve around it. Taking support from Grimes' music, the visualizer revolves around imagining our interpreation of genesis - creation of all life. The person is given a wand which they can use to control energy around them to create different arrangements. 
+
+# Execution
+
+## Harware
+
+The project works using an accelerometers and two buttons for input. Soumen had worked with an accelerometer and he got that working very quickly. We then got to working on wireless communication. The XBEE devices gave us quite some trouble but after some toying around we were able to get it going. The buttons were soldered and done in the end. It was all put in an encasing that resembles a periscope. 
+
+## Software
+
+The code is written using aframe. The world is initiliazed in aframe using the aframe-environment component. Then I coded 50 layers of 9 balls each. Then I set animations of rotate, expansion and size change on them. Then I set a delay on them to make chaotic patterns emerge from the chaos. The VR visualizer would still run on our phone using a google cardboard type of device. Hence, I wrote a socket.js express node.js web server that would send data from the laptop to phone whenver change was detected.
+
+## Software + Hardware
+
+Upon getting x-axis values, the program counts if enough change has been triggered (if the change value crosses a certain threshold). If it has then that value is used to slow or fasten the rotation of the circles. 
+
+Upon getting y-axis values, the program counts if a change threshold is crossed. If it has it shrinks or expands the the circle's radius.
+
+Upon getting z-axis values, the colors are changed from red to blue upon crossing certain thresholds. The lighting is a mix of red and blue hence it makes sense for the spheres to have intermediate values that are a mix of red and blue.
+
+ When Soumen and I decided to work together we both decided we would like to create a VR experience. That's all we knew in the start and we were told by the professor that we had a long way to go conceptually. We started looking all over for inspiration. 
