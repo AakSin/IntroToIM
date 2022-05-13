@@ -38,6 +38,44 @@ Genesis by Grimes was crucial for the concept of this project to come to fruitio
 
 The project works using an accelerometers and two buttons for input. Soumen had worked with an accelerometer and he got that working very quickly. We then got to working on wireless communication. The XBEE devices gave us quite some trouble but after some toying around we were able to get it going. The buttons were soldered and done in the end. It was all put in an encasing that resembles a periscope. 
 
+```
+ accel.read();
+
+      String packet = String(accel.cx);
+      packet += "\t";
+      packet += String(accel.cy);
+      packet += "\t";
+      packet += String(accel.cz);
+      packet += "\t";
+      // accel.readPL() will return a byte containing information
+      // about the orientation of the sensor. It will be either
+      // PORTRAIT_U, PORTRAIT_D, LANDSCAPE_R, LANDSCAPE_L, or
+      // LOCKOUT.
+      byte pl = accel.readPL();
+      switch (pl)
+      {
+        case PORTRAIT_U:
+          packet += "Portrait Up";
+          break;
+        case PORTRAIT_D:
+          packet += "Portrait Down";
+          break;
+        case LANDSCAPE_R:
+          packet += "Landscape Right";
+          break;
+        case LANDSCAPE_L:
+          packet += "Landscape Left";
+          break;
+        case LOCKOUT:
+          packet += "Flat";
+          break;
+      }
+      packet += "\t";
+      packet += String(!(digitalRead(button1Pin)));
+      packet += "\t";
+      packet += String(!(digitalRead(button2Pin)));
+```
+
 ## Software
 
 The code is written using aframe. The world is initiliazed in aframe using the aframe-environment component. Then I coded 50 layers of 9 balls each. Then I set animations of rotate, expansion and size change on them. Then I set a delay on them to make chaotic patterns emerge from the chaos. The VR visualizer would still run on our phone using a google cardboard type of device. Hence, I wrote a socket.js express node.js web server that would send data from the laptop to phone whenver change was detected.
