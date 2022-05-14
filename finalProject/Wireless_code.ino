@@ -99,19 +99,6 @@ void loop()
       packet += "\t";
       packet += String(!(digitalRead(button2Pin)));
 
-      
-//      Serial.println(packet);
-      //
-      //    Serial.print(accel.cx, 3);
-      //    XBee.write(accel.cz);
-      //    XBee.write(13);
-      //    XBee.write(10);
-      //XBee.write(accel.cy);
-      //XBee.write(' ');
-      //XBee.write(accel.cz);
-      //XBee.write("\r\n");
-
-      //    XBee.write(accel.cx, 3);
 
       char* buf = (char*) malloc(sizeof(char) * packet.length() + 1);
 
