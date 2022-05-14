@@ -12,7 +12,11 @@ Project hosted live on <a href="https://aframesockets.glitch.me/"> https://afram
  
  The project is a VR experience titled 'Genesis' set to <a href="https://www.youtube.com/watch?v=1FH-q0I1fJY"> Genesis by Grimes </a>. The visual experience involves spheres revolving around to form patterns and shapes. When connected to our controller made using an Arduino, you can control these patterns by tilting the device. 
  
- The concept of Genesis is to give the user an illusion of creation - which is demonstrated in the visuals in the form of control of particles in an alternate universe with nothing but red towers around. 
+You can tilt the controller in x-axis to spread the particles or bring them closer, on the y-axis to fasten or slow their rotation and on the z-axis to change their color.
+
+There are also 2 buttons present to make you go up and down in this spiral and the closer you get to the ground, the louder the music becomes
+ 
+ The concept of Genesis is to give the user an illusion of creation - which is demonstrated in the visuals in the form of control of particles in an alternate universe with nothing but towers around. 
  
  ## Inspiration
  
