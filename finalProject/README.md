@@ -1,6 +1,6 @@
 # Genesis 
 ## A VR Final Project
-![Genesis world screenshot](https://user-images.githubusercontent.com/38569809/168379443-97759a3d-8d55-4065-ac72-7d8a3ae4a584.png)
+![Genesis world screenshot](https://github.com/AakSin/aaksin-public/blob/main/genesis/3498ba743b114470404ecbc99d13ce0d.gif)
 
 Software code hosted live on <a href="https://glitch.com/edit/#!/aframesockets"> https://glitch.com/edit/#!/aframesockets </a>.
 
