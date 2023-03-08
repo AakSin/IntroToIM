@@ -2,12 +2,9 @@ Hosted live on [https://aaksin.github.io/IntroToIM/week5/game](https://aaksin.gi
 # Week 5
 ## Concepts, Sketches and Ideas
 
-<img src="https://i.imgur.com/adZYV7I.jpg" height=700>
-<div>
-<img src="https://i.imgur.com/esEHLbt.jpg" height=500 >
-<img src="https://i.imgur.com/vNQ1f0V.jpg" height=500  >
-  </div>
-<img src="https://i.imgur.com/ERAAUvx.jpg">
+<img src="https://i.imgur.com/adZYV7I.jpg" height=500> <img src="https://i.imgur.com/vNQ1f0V.jpg" height=500  >
+
+<img src="https://i.imgur.com/ERAAUvx.jpg" height=500>
 
 I spent the majority of the time on sketches, ideas and music for the game during the weekend. After a lot of sketching and ideation, I came up with this game concept - 
 a character (sketched in the last sketch) floats in space while randomly generated planets spawn to the beat of the music. The character can be controlled by the arrow keys and
@@ -23,8 +20,7 @@ Most of the coding I have done is just trying to understand all the sound analys
 analysis to the selected song can be found [here](https://github.com/AakSin/IntroToIM/tree/main/week5). I will need some help understanding all this music data and chosing
 which points to spawn the planets to in the song (I have the beat drop, the kicks and vocal highs in mind). 
 <div>
-<img src="https://i.imgur.com/fxYjytT.png" height=500 >
-<img src="https://i.imgur.com/qpnmNEl.png" height=500  >
+<img src="https://i.imgur.com/fxYjytT.png" width=500 > <img src="https://i.imgur.com/qpnmNEl.png" width=500  >
   </div>
     
 ## To Do
